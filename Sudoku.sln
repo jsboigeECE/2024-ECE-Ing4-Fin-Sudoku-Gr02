@@ -20,6 +20,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.PSO", "Sudoku.PSO\Su
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.SimulatedAnnealing", "Sudoku.SimulatedAnnealing\Sudoku.SimulatedAnnealing.csproj", "{729AB42C-6D2A-41D7-854C-0B6DD6A842F9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.GraphTheory", "Sudoku.TheorieDesGraphes\Sudoku.GraphTheory.csproj", "{10D5DF76-5E15-4B01-B13B-8B01A4C32BE6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,6 +48,10 @@ Global
 		{729AB42C-6D2A-41D7-854C-0B6DD6A842F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{729AB42C-6D2A-41D7-854C-0B6DD6A842F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{729AB42C-6D2A-41D7-854C-0B6DD6A842F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10D5DF76-5E15-4B01-B13B-8B01A4C32BE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10D5DF76-5E15-4B01-B13B-8B01A4C32BE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10D5DF76-5E15-4B01-B13B-8B01A4C32BE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10D5DF76-5E15-4B01-B13B-8B01A4C32BE6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
