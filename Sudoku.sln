@@ -21,7 +21,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.SimulatedAnnealing", "Sudoku.SimulatedAnnealing\Sudoku.SimulatedAnnealing.csproj", "{729AB42C-6D2A-41D7-854C-0B6DD6A842F9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.CSPChoco", "Sudoku.CSPChoco\Sudoku.CSPChoco.csproj", "{97F40960-9E49-4773-9155-DC01C79B3EC8}"
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.SimulatedProbalist", "Sudoku.SimulatedProbalist\Sudoku.SimulatedProbalist.csproj", "{FC9BC8EB-3F1F-43C3-B053-0D2D60CDBDD9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.ColorationGraph", "Sudoku.ColorationGraph\Sudoku.ColorationGraph.csproj", "{203E6D01-D975-4173-83F6-5BF558FD9F80}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +58,10 @@ Global
 		{FC9BC8EB-3F1F-43C3-B053-0D2D60CDBDD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC9BC8EB-3F1F-43C3-B053-0D2D60CDBDD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC9BC8EB-3F1F-43C3-B053-0D2D60CDBDD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{203E6D01-D975-4173-83F6-5BF558FD9F80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{203E6D01-D975-4173-83F6-5BF558FD9F80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{203E6D01-D975-4173-83F6-5BF558FD9F80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{203E6D01-D975-4173-83F6-5BF558FD9F80}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
