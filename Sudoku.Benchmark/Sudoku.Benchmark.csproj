@@ -18,5 +18,8 @@
     <ProjectReference Include="..\Sudoku.Shared\Sudoku.Shared.csproj" />
     <ProjectReference Include="..\Sudoku.SimulatedAnnealing\Sudoku.SimulatedAnnealing.csproj" />
     <ProjectReference Include="..\Sudoku.TheorieDesGraphes\Sudoku.GraphTheory.csproj" />
+    <ProjectReference Include="..\Sudoku.CSPChoco\Sudoku.CSPChoco.csproj" />
+    <ProjectReference Include="..\Sudoku.SimulatedProbalist\Sudoku.SimulatedProbalist.csproj" />
+
   </ItemGroup>
 </Project>
