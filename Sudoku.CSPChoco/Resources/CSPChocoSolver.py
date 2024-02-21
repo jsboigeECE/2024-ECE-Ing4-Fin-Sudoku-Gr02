@@ -1,59 +1,68 @@
 from timeit import default_timer
+from pulp import *
 
-#instance = ((0,0,0,0,9,4,0,3,0),
-#           (0,0,0,5,1,0,0,0,7),
-#           (0,8,9,0,0,0,0,4,0),
-#           (0,0,0,0,0,0,2,0,8),
-#           (0,6,0,2,0,1,0,5,0),
-#           (1,0,2,0,0,0,0,0,0),
-#           (0,7,0,0,0,0,5,2,0),
-#           (9,0,0,0,6,5,0,0,0),
-#           (0,4,0,9,7,0,0,0,0))
+class SudokuSolver:
+    
+    def __init__(self, grid):
+        self.SIZE = 9
+        self.grid = grid
+        self.model = LpProblem("SudokuSolver", LpMinimize)
+        self.vars = LpVariable.dicts("Vars", (range(self.SIZE), range(self.SIZE), range(1, self.SIZE+1)), cat='Binary')
 
-def findNextCellToFill(grid, i, j):
-        for x in range(i,9):
-                for y in range(j,9):
-                        if grid[x][y] == 0:
-                                return x,y
-        for x in range(0,9):
-                for y in range(0,9):
-                        if grid[x][y] == 0:
-                                return x,y
-        return -1,-1
+    def solve(self):
+        # Objective function (dummy in this case, as we don't need to optimize any particular variable)
+        self.model += 0, "Arbitrary Objective Function"
 
-def isValid(grid, i, j, e):
-        rowOk = all([e != grid[i][x] for x in range(9)])
-        if rowOk:
-                columnOk = all([e != grid[x][j] for x in range(9)])
-                if columnOk:
-                        # finding the top left x,y co-ordinates of the section containing the i,j cell
-                        secTopX, secTopY = 3 *(i//3), 3 *(j//3) #floored quotient should be used here. 
-                        for x in range(secTopX, secTopX+3):
-                                for y in range(secTopY, secTopY+3):
-                                        if grid[x][y] == e:
-                                                return False
-                        return True
-        return False
+        # Constraints
+        # Each cell must only contain one value
+        for r in range(self.SIZE):
+            for c in range(self.SIZE):
+                self.model += lpSum([self.vars[r][c][v] for v in range(1, self.SIZE+1)]) == 1
 
-def solveSudoku(grid, i=0, j=0):
-        i,j = findNextCellToFill(grid, i, j)
-        if i == -1:
-                return True
-        for e in range(1,10):
-                if isValid(grid,i,j,e):
-                        grid[i][j] = e
-                        if solveSudoku(grid, i, j):
-                                return True
-                        # Undo the current cell for backtracking
-                        grid[i][j] = 0
-        return False
+        # Each value appears once per row, column, and box
+        for v in range(1, self.SIZE+1):
+            for r in range(self.SIZE):
+                self.model += lpSum([self.vars[r][c][v] for c in range(self.SIZE)]) == 1
+            for c in range(self.SIZE):
+                self.model += lpSum([self.vars[r][c][v] for r in range(self.SIZE)]) == 1
+            for boxRow in range(3):
+                for boxCol in range(3):
+                    self.model += lpSum([self.vars[3*boxRow+i][3*boxCol+j][v] for i in range(3) for j in range(3)]) == 1
+        
+        # Pre-assigned cells
+        for r in range(self.SIZE):
+            for c in range(self.SIZE):
+                if self.grid[r][c] != 0: # Non-zero entries are pre-assigned
+                    self.model += self.vars[r][c][self.grid[r][c]] == 1
 
-#start = default_timer()
-if(solveSudoku(instance)):
-	#print_grid(instance)
-	r=instance
-else:
-	print ("Aucune solution trouv�e")
+        # Solve the model
+        self.model.solve(solver=CHOCO_CMD())
+        
+        # Solution extraction
+        grille = [[None for _ in range(9)] for _ in range(9)]   # Création de la grille de sudoku résolue qui sera renvoyée au code c#
+        for r in range(self.SIZE):
+            for c in range(self.SIZE):
+                for v in range(1, self.SIZE+1):
+                    if value(self.vars[r][c][v]) == 1:
+                        grille[r][c] = v
+                        break
+        return grille
+        
+# Programme principal
+    
+'''
+sudoku = [
+    [5, 3, 0, 0, 7, 0, 0, 0, 0],
+    [6, 0, 0, 1, 9, 5, 0, 0, 0],
+    [0, 9, 8, 0, 0, 0, 0, 6, 0],
+    [8, 0, 0, 0, 6, 0, 0, 0, 3],
+    [4, 0, 0, 8, 0, 3, 0, 0, 1],
+    [7, 0, 0, 0, 2, 0, 0, 0, 6],
+    [0, 6, 0, 0, 0, 0, 2, 8, 0],
+    [0, 0, 0, 4, 1, 9, 0, 0, 5],
+    [0, 0, 0, 0, 8, 0, 0, 7, 9]
+]
+'''
 
-#execution = default_timer() - start
-#print("Le temps de r�solution est de : ", execution, " seconds as a floating point value")
+solver = SudokuSolver(instance)
+r = solver.solve()
