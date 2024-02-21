@@ -24,8 +24,8 @@ public class CSPChocoSolver: PythonSolverBase
 				scope.Set("instance", pyCells);
 
 				// run the Python script
-				string code = File.ReadAllText(@"C:\GitHub\2024-ECE-Ing4-Fin-Sudoku-Gr02\Sudoku.CSPChoco\Resources\CSPChocoSolver.py");
-				//string code = Resources.CSPChocoSolver_py;
+				//string code = File.ReadAllText(@"C:\GitHub\2024-ECE-Ing4-Fin-Sudoku-Gr02\Sudoku.CSPChoco\Resources\CSPChocoSolver.py");
+				string code = Resources.CSPChocoSolver_py;
 				//Console.WriteLine(code);
 				scope.Exec(code);
 				

@@ -36,7 +36,7 @@ class SudokuSolver:
                     self.model += self.vars[r][c][self.grid[r][c]] == 1
 
         # Solve the model
-        self.model.solve(solver=CHOCO_CMD())
+        self.model.solve()
         
         # Solution extraction
         grille = [[None for _ in range(9)] for _ in range(9)]   # Création de la grille de sudoku résolue qui sera renvoyée au code c#
