@@ -17,8 +17,17 @@
     <ProjectReference Include="..\Sudoku.Backtracking\Sudoku.Backtracking.csproj" />
     <ProjectReference Include="..\Sudoku.Shared\Sudoku.Shared.csproj" />
     <ProjectReference Include="..\Sudoku.SimulatedAnnealing\Sudoku.SimulatedAnnealing.csproj" />
+    <ProjectReference Include="..\Sudoku.TheorieDesGraphes\Sudoku.GraphTheory.csproj" />
     <ProjectReference Include="..\Sudoku.CSPChoco\Sudoku.CSPChoco.csproj" />
     <ProjectReference Include="..\Sudoku.SimulatedProbalist\Sudoku.SimulatedProbalist.csproj" />
+<<<<<<< HEAD
     <ProjectReference Include="..\Sudoku.ColorationGraph\Sudoku.ColorationGraph.csproj" />
+=======
+<<<<<<< HEAD
+    <ProjectReference Include="..\Sudoku.ColorationGraph\Sudoku.ColorationGraph.csproj" />
+=======
+
+>>>>>>> 0a0872a64fa92bbb725f37a0c38e06192994deff
+>>>>>>> 110587b12a828d7ff928e45ca65e2007b1864007
   </ItemGroup>
 </Project>

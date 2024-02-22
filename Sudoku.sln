@@ -20,9 +20,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.PSO", "Sudoku.PSO\Su
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.SimulatedAnnealing", "Sudoku.SimulatedAnnealing\Sudoku.SimulatedAnnealing.csproj", "{729AB42C-6D2A-41D7-854C-0B6DD6A842F9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.GraphTheory", "Sudoku.TheorieDesGraphes\Sudoku.GraphTheory.csproj", "{10D5DF76-5E15-4B01-B13B-8B01A4C32BE6}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.CSPChoco", "Sudoku.CSPChoco\Sudoku.CSPChoco.csproj", "{97F40960-9E49-4773-9155-DC01C79B3EC8}"
 EndProject
+<<<<<<< HEAD
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.ColorationGraph", "Sudoku.ColorationGraph\Sudoku.ColorationGraph.csproj", "{4202E644-6DFB-4770-99DB-DE37838AAFA8}"
+=======
+<<<<<<< HEAD
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.ColorationGraph", "Sudoku.ColorationGraph\Sudoku.ColorationGraph.csproj", "{203E6D01-D975-4173-83F6-5BF558FD9F80}"
+=======
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.SimulatedProbalist", "Sudoku.SimulatedProbalist\Sudoku.SimulatedProbalist.csproj", "{FC9BC8EB-3F1F-43C3-B053-0D2D60CDBDD9}"
+>>>>>>> 0a0872a64fa92bbb725f37a0c38e06192994deff
+>>>>>>> 110587b12a828d7ff928e45ca65e2007b1864007
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,6 +60,10 @@ Global
 		{729AB42C-6D2A-41D7-854C-0B6DD6A842F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{729AB42C-6D2A-41D7-854C-0B6DD6A842F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{729AB42C-6D2A-41D7-854C-0B6DD6A842F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10D5DF76-5E15-4B01-B13B-8B01A4C32BE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10D5DF76-5E15-4B01-B13B-8B01A4C32BE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10D5DF76-5E15-4B01-B13B-8B01A4C32BE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10D5DF76-5E15-4B01-B13B-8B01A4C32BE6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{97F40960-9E49-4773-9155-DC01C79B3EC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{97F40960-9E49-4773-9155-DC01C79B3EC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{97F40960-9E49-4773-9155-DC01C79B3EC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -58,10 +72,21 @@ Global
 		{FC9BC8EB-3F1F-43C3-B053-0D2D60CDBDD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC9BC8EB-3F1F-43C3-B053-0D2D60CDBDD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC9BC8EB-3F1F-43C3-B053-0D2D60CDBDD9}.Release|Any CPU.Build.0 = Release|Any CPU
+<<<<<<< HEAD
 		{4202E644-6DFB-4770-99DB-DE37838AAFA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4202E644-6DFB-4770-99DB-DE37838AAFA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4202E644-6DFB-4770-99DB-DE37838AAFA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4202E644-6DFB-4770-99DB-DE37838AAFA8}.Release|Any CPU.Build.0 = Release|Any CPU
+=======
+<<<<<<< HEAD
+		{203E6D01-D975-4173-83F6-5BF558FD9F80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{203E6D01-D975-4173-83F6-5BF558FD9F80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{203E6D01-D975-4173-83F6-5BF558FD9F80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{203E6D01-D975-4173-83F6-5BF558FD9F80}.Release|Any CPU.Build.0 = Release|Any CPU
+=======
+
+>>>>>>> 0a0872a64fa92bbb725f37a0c38e06192994deff
+>>>>>>> 110587b12a828d7ff928e45ca65e2007b1864007
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
