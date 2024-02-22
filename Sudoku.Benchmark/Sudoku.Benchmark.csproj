@@ -17,4 +17,9 @@
     <ProjectReference Include="..\Sudoku.Backtracking\Sudoku.Backtracking.csproj" />
     <ProjectReference Include="..\Sudoku.Shared\Sudoku.Shared.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Reference Include="HeuristicLab.Algorithms.Benchmarks-3.3">
+      <HintPath>..\..\..\..\OneDrive\Bureau\heuristic\HeuristicLab.Algorithms.Benchmarks-3.3.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 </Project>
