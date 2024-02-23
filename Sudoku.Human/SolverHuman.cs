@@ -295,3 +295,4 @@ namespace Sudoku.SolverHumain
 
 
 }
+//On voit les modif
