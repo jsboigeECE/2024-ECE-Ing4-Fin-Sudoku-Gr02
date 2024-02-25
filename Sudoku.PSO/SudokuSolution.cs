@@ -3,8 +3,8 @@ using System.IO;
 
 namespace Sudoku.PSO
 {
-    // We encode a solution of the TSP as an integer vector describing the ordering
-    // that the traveling salesman should follow visiting the cities.
+    // Nous encodons une solution du Sudoku sous la forme d'un vecteur d'entiers décrivant
+    // l'ordre que la particule devrait suivre en visitant les grilles SudokuGrid
     public class SudokuSolution
     {
         public SudokuInstance Instance { get; protected set; }
@@ -24,8 +24,8 @@ namespace Sudoku.PSO
             using (StreamWriter writer = File.CreateText(file))
             {
                 writer.WriteLine(cost);
-                writer.WriteLine(Instance.NumberCities);
-                for (int i = 0; i < Instance.NumberCities; i++)
+                writer.WriteLine(Instance.NumberSudokuGrids);
+                for (int i = 0; i < Instance.NumberSudokuGrids; i++)
                 {
                     writer.WriteLine(Path[i] + 1);
                 }

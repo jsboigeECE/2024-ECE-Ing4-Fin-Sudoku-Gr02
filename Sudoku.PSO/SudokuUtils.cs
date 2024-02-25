@@ -13,23 +13,23 @@ namespace Sudoku.PSO
 
             for (int i = 1; i < path.Length; i++)
             {
-                cost += instance.Costs[path[i - 1], path[i]];
+                cost += instance.NbErrors[path[i - 1], path[i]];
             }
-            cost += instance.Costs[path[path.Length - 1], path[0]];
+            cost += instance.NbErrors[path[path.Length - 1], path[0]];
 
             return cost;
         }
 
         public static int[] RandomSolution(SudokuInstance instance)
         {
-            int[] solution = new int[instance.NumberCities];
+            int[] solution = new int[instance.NumberSudokuGrids];
             List<int> cities = new List<int>();
 
-            for (int city = 0; city < instance.NumberCities; city++)
+            for (int city = 0; city < instance.NumberSudokuGrids; city++)
             {
                 cities.Add(city);
             }
-            for (int i = 0; i < instance.NumberCities; i++)
+            for (int i = 0; i < instance.NumberSudokuGrids; i++)
             {
                 int cityIndex = Statistics.RandomDiscreteUniform(0, cities.Count - 1);
                 int city = cities[cityIndex];
@@ -42,10 +42,10 @@ namespace Sudoku.PSO
 
         public static int[] GreedySolution(SudokuInstance instance)
         {
-            int[] solution = new int[instance.NumberCities];
-            bool[] visited = new bool[instance.NumberCities];
+            int[] solution = new int[instance.NumberSudokuGrids];
+            bool[] visited = new bool[instance.NumberSudokuGrids];
 
-            for (int i = 0; i < instance.NumberCities; i++)
+            for (int i = 0; i < instance.NumberSudokuGrids; i++)
             {
                 if (i == 0)
                 {
@@ -56,12 +56,12 @@ namespace Sudoku.PSO
                     int currentCity = solution[i - 1];
                     int nextCity;
                     double bestCost = double.MaxValue;
-                    for (nextCity = 1; nextCity < instance.NumberCities; nextCity++)
+                    for (nextCity = 1; nextCity < instance.NumberSudokuGrids; nextCity++)
                     {
-                        if (!visited[nextCity] && instance.Costs[currentCity, nextCity] < bestCost)
+                        if (!visited[nextCity] && instance.NbErrors[currentCity, nextCity] < bestCost)
                         {
                             solution[i] = nextCity;
-                            bestCost = instance.Costs[currentCity, nextCity];
+                            bestCost = instance.NbErrors[currentCity, nextCity];
                         }
                     }
                 }
@@ -73,7 +73,7 @@ namespace Sudoku.PSO
 
         public static int[] GetNeighbor(SudokuInstance instance, int[] solution)
         {
-            int[] neighbor = new int[instance.NumberCities];
+            int[] neighbor = new int[instance.NumberSudokuGrids];
             int a = Statistics.RandomDiscreteUniform(0, solution.Length - 1);
             int b = a;
             while (b == a)
@@ -102,11 +102,11 @@ namespace Sudoku.PSO
         public static void Repair(SudokuInstance instance, int[] individual)
         {
             int visitedCitiesCount = 0;
-            bool[] visitedCities = new bool[instance.NumberCities];
-            bool[] repeatedPositions = new bool[instance.NumberCities];
+            bool[] visitedCities = new bool[instance.NumberSudokuGrids];
+            bool[] repeatedPositions = new bool[instance.NumberSudokuGrids];
 
             // Get information to decide if the individual is valid.
-            for (int i = 0; i < instance.NumberCities; i++)
+            for (int i = 0; i < instance.NumberSudokuGrids; i++)
             {
                 if (!visitedCities[individual[i]])
                 {
@@ -120,13 +120,13 @@ namespace Sudoku.PSO
             }
 
             // If the individual is invalid, make it valid.
-            if (visitedCitiesCount != instance.NumberCities)
+            if (visitedCitiesCount != instance.NumberSudokuGrids)
             {
                 for (int i = 0; i < repeatedPositions.Length; i++)
                 {
                     if (repeatedPositions[i])
                     {
-                        int count = Statistics.RandomDiscreteUniform(1, instance.NumberCities - visitedCitiesCount);
+                        int count = Statistics.RandomDiscreteUniform(1, instance.NumberSudokuGrids - visitedCitiesCount);
                         for (int c = 0; c < visitedCities.Length; c++)
                         {
                             if (!visitedCities[c])
@@ -241,8 +241,8 @@ namespace Sudoku.PSO
         // Implementation of the GRC solution's construction algorithm.
         public static int[] GRCSolution(SudokuInstance instance, double rclThreshold)
         {
-            int numCities = instance.NumberCities;
-            int[] path = new int[instance.NumberCities];
+            int numCities = instance.NumberSudokuGrids;
+            int[] path = new int[instance.NumberSudokuGrids];
             int totalCities = numCities;
             int index = 0;
             double best = 0;
@@ -264,7 +264,7 @@ namespace Sudoku.PSO
                 {
                     if (!visited[i])
                     {
-                        cost = instance.Costs[path[index], i];
+                        cost = instance.NbErrors[path[index], i];
                         if (rcl.Count == 0)
                         {
                             best = cost;

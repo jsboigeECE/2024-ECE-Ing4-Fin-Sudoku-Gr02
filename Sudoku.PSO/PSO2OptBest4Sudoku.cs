@@ -16,12 +16,12 @@ namespace Sudoku.PSO
             SudokuInstance instance = new SudokuInstance(fileInput);
 
             // Setting the parameters of the PSO for this instance of the problem.
-            int[] lowerBounds = new int[instance.NumberCities];
-            int[] upperBounds = new int[instance.NumberCities];
-            for (int i = 0; i < instance.NumberCities; i++)
+            int[] lowerBounds = new int[instance.NumberSudokuGrids];
+            int[] upperBounds = new int[instance.NumberSudokuGrids];
+            for (int i = 0; i < instance.NumberSudokuGrids; i++)
             {
                 lowerBounds[i] = 0;
-                upperBounds[i] = instance.NumberCities - 1;
+                upperBounds[i] = instance.NumberSudokuGrids - 1;
             }
             DiscretePSO pso = new DiscretePSO2OptBest4Sudoku(instance, (int)particlesCount, prevConf, neighConf, lowerBounds, upperBounds);
 
@@ -35,7 +35,7 @@ namespace Sudoku.PSO
         {
             get
             {
-                return "PSO with 2-opt (best improvement) local search for TSP";
+                return "PSO with 2-opt (best improvement) local search for Sudoku";
             }
         }
 

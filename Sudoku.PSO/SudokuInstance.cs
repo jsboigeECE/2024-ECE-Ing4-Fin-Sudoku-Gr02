@@ -6,10 +6,9 @@ namespace Sudoku.PSO
 {
     public class SudokuInstance
     {
-        public int NumberCities { get; protected set; }
+        public int NumberSudokuGrids { get; protected set; }
+        public double[,] NbErrors { get; protected set; }
 
-        public double[,] Costs { get; protected set; }
-            
         public SudokuInstance(string file)
         {
             Regex regex = new Regex(@"\s+");
@@ -18,27 +17,24 @@ namespace Sudoku.PSO
             using (StreamReader reader = File.OpenText(file))
             {
                 string line = "";
-
-                // Getting the dimension.
-                NumberCities = -1;
-                while (NumberCities == -1)
+                NumberSudokuGrids = -1;
+                while (NumberSudokuGrids == -1)
                 {
                     line = reader.ReadLine();
                     if (line.StartsWith("DIMENSION"))
                     {
-                        NumberCities = int.Parse(line.Substring(11));
-                        xCoords = new double[NumberCities];
-                        yCoords = new double[NumberCities];
-                        Costs = new double[NumberCities, NumberCities];
+                        NumberSudokuGrids = int.Parse(line.Substring(11));
+                        xCoords = new double[NumberSudokuGrids];
+                        yCoords = new double[NumberSudokuGrids];
+                        NbErrors = new double[NumberSudokuGrids, NumberSudokuGrids];
                     }
                 }
 
-                // Getting the coordinates of the cities.
                 while (!line.StartsWith("NODE_COORD_SECTION"))
                 {
                     line = reader.ReadLine();
                 }
-                for (int k = 0; k < NumberCities; k++)
+                for (int k = 0; k < NumberSudokuGrids; k++)
                 {
                     line = reader.ReadLine();
                     string[] parts = regex.Split(line.Trim());
@@ -48,16 +44,13 @@ namespace Sudoku.PSO
                 }
             }
 
-            // Building the matrix of distances.
-            for (int i = 0; i < NumberCities; i++)
+            for (int i = 0; i < NumberSudokuGrids; i++)
             {
-                for (int j = 0; j < NumberCities; j++)
+                for (int j = 0; j < NumberSudokuGrids; j++)
                 {
-                    Costs[i, j] = Math.Sqrt(Math.Pow(xCoords[i] - xCoords[j], 2) +
-                                            Math.Pow(yCoords[i] - yCoords[j], 2));
+                    NbErrors[i, j] = Math.Sqrt(Math.Pow(xCoords[i] - xCoords[j], 2) + Math.Pow(yCoords[i] - yCoords[j], 2));
                 }
             }
         }
     }
 }
-

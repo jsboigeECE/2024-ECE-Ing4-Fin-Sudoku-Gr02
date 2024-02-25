@@ -11,7 +11,7 @@ namespace Sudoku.PSO
         public SudokuGrid Solve(SudokuGrid s)
         {
             // Initialisation des paramètres
-            const int numOrganisms = 200; // nombre d'organisme
+            const int numOrganisms = 200; // nombre d'organismes
             const int maxEpochs = 5000; // nombre max d'époques
             const int maxRestarts = 20; // nombre max de restarts
 
