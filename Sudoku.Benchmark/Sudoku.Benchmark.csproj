@@ -21,5 +21,6 @@
     <ProjectReference Include="..\Sudoku.CSPChoco\Sudoku.CSPChoco.csproj" />
     <ProjectReference Include="..\Sudoku.SimulatedProbalist\Sudoku.SimulatedProbalist.csproj" />
     <ProjectReference Include="..\Sudoku.ColorationGraph\Sudoku.ColorationGraph.csproj" />
+    <ProjectReference Include="..\Sudoku.SolverHuman\Sudoku.SolverHuman.csproj" />
   </ItemGroup>
 </Project>
