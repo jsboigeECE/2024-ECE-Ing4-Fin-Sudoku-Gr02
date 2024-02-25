@@ -44,6 +44,7 @@ public class CSPChocoSolver: PythonSolverBase
 		protected override void InitializePythonComponents()
 		{
 			//declare your pip packages here
+			InstallPipModule("numpy");
 			InstallPipModule("PuLP");
 			base.InitializePythonComponents();
 		}
