@@ -1,0 +1,36 @@
+﻿using System;
+using System.IO;
+
+namespace Sudoku.PSO
+{
+    // We encode a solution of the TSP as an integer vector describing the ordering
+    // that the traveling salesman should follow visiting the cities.
+    public class SudokuSolution
+    {
+        public SudokuInstance Instance { get; protected set; }
+
+        public int[] Path { get; protected set; }
+
+        public SudokuSolution(SudokuInstance instance, int[] path)
+        {
+            Instance = instance;
+            Path = path;
+        }
+
+        public void Write(string file)
+        {
+            double cost = SudokuUtils.Fitness(Instance, Path);
+
+            using (StreamWriter writer = File.CreateText(file))
+            {
+                writer.WriteLine(cost);
+                writer.WriteLine(Instance.NumberCities);
+                for (int i = 0; i < Instance.NumberCities; i++)
+                {
+                    writer.WriteLine(Path[i] + 1);
+                }
+            }
+        }
+    }
+}
+
