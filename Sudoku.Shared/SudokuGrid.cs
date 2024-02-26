@@ -376,5 +376,16 @@ namespace Sudoku.Shared
 
         public int NbEmptyCells() => Cells.SelectMany(r => r).Count(c => c == 0);
 
+        public int GetElement(int row, int col)
+        {
+            return Cells[row][col];
+        }
+
+        // Méthode pour définir la valeur d'un élément spécifique de la grille
+        public void SetElement(int row, int col, int value)
+        {
+            Cells[row][col] = value;
+        }
+
     }
 }
