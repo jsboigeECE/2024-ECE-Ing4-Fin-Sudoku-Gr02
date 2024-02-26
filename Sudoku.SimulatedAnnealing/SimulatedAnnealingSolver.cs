@@ -23,6 +23,7 @@ public class SimulatedAnnealingSolver: PythonSolverBase
 				scope.Set("instance", pyCells);
 
 				// run the Python script
+				//string code = File.ReadAllText(@"C:\Users\simon\Desktop\Ecole\Paris\ING4\S2\IAA\2024-ECE-Ing4-Fin-Sudoku-Gr02\Sudoku.SimulatedAnnealing\Resources\SimulatedAnnealing.py");
 				string code = Resources.SimulatedAnnealing_py;
 				scope.Exec(code);
 				
@@ -41,6 +42,7 @@ public class SimulatedAnnealingSolver: PythonSolverBase
 		protected override void InitializePythonComponents()
 		{
 			//declare your pip packages here
+			InstallPipModule("numpy");
 			InstallPipModule("simanneal");
 			base.InitializePythonComponents();
 		}
