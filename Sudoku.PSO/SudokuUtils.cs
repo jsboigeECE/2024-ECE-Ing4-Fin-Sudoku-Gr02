@@ -8,28 +8,23 @@ namespace Sudoku.PSO
 {
     public static class SudokuUtils
     {
-        public static double Fitness(SudokuGrid instance, int[] path)
+        public static  SudokuGrid ConvertToSudoku(int[] path)
         {
-                // Convertir les chemins en grille
-            int size = (int)Math.Sqrt(path.Length);
-            int[,] grid = new int[size, size];
-            for (int i = 0; i < path.Length; i++)
-            {
-                int row = i / size;
-                int col = i % size;
-                grid[row, col] = path[i];
-            }
+			throw new NotImplementedException();
+		}
 
-            // Créer une grille de sudoku SudokuGrid
-            SudokuGrid currentGrid = new SudokuGrid();
+		public static int[] ConvertFromSudoku(SudokuGrid sudoku)
+		{
+			throw new NotImplementedException();
+		}
 
-            // Calcul du nombre d'erreurs
-            int errors = currentGrid.NbErrors(instance);
 
-            // Maximisation de la fitness en utilisant l'inverse (ou l'opposé ?)
-            double fitness = 1.0 / (1.0 + errors);
 
-            return fitness;
+
+		public static double Fitness(SudokuGrid instance, int[] path)
+        {
+            var targetSudoku = ConvertToSudoku(path);
+            return - targetSudoku.NbErrors(instance);
         }
 
         public static SudokuGrid RandomSolution(SudokuGrid instance)
