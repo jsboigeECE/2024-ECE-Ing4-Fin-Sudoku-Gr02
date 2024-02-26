@@ -249,4 +249,24 @@ public sealed class Puzzle
 		}
 		return sb.ToString();
 	}
+
+    internal void SetCellValue(Region row, Region column, int candidate)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal object GetRowValues(Region row)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal object GetColumnValues(Region column)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal object GetBlockValues(Region block)
+    {
+        throw new NotImplementedException();
+    }
 }
