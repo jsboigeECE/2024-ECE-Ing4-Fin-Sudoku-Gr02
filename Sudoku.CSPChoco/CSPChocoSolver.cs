@@ -20,10 +20,13 @@ public class CSPChocoSolver: PythonSolverBase
 				PyObject pyCells = s.Cells.ToPython();
 
 				// create a Python variable "instance"
+				InitializePythonComponents();
 				scope.Set("instance", pyCells);
 
 				// run the Python script
+				//string code = File.ReadAllText(@"C:\GitHub\2024-ECE-Ing4-Fin-Sudoku-Gr02\Sudoku.CSPChoco\Resources\CSPChocoSolver.py");
 				string code = Resources.CSPChocoSolver_py;
+				//Console.WriteLine(code);
 				scope.Exec(code);
 				
 				//Retrieve solved Sudoku variable
@@ -41,7 +44,8 @@ public class CSPChocoSolver: PythonSolverBase
 		protected override void InitializePythonComponents()
 		{
 			//declare your pip packages here
-			//InstallPipModule("numpy");
+			InstallPipModule("numpy");
+			InstallPipModule("PuLP");
 			base.InitializePythonComponents();
 		}
 
