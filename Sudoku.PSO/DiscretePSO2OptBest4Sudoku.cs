@@ -2,16 +2,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Sudoku.Shared;
 
 namespace Sudoku.PSO
 {
     public class DiscretePSO2OptBest4Sudoku : DiscretePSO
     {
-        public SudokuInstance Instance { get; protected set; }
+        public SudokuGrid Instance { get; protected set; }
 
         protected int generatedSolutions;
 
-        public DiscretePSO2OptBest4Sudoku(SudokuInstance instance, int partsCount, double prevConf,
+        public DiscretePSO2OptBest4Sudoku(SudokuGrid instance, int partsCount, double prevConf,
                                 double neighConf, int[] lowerBounds, int[] upperBounds)
             : base(partsCount, prevConf, neighConf, lowerBounds, upperBounds)
         {
@@ -25,13 +26,13 @@ namespace Sudoku.PSO
             return SudokuUtils.Fitness(Instance, individual);
         }
 
-        protected override int[] InitialSolution()
+        protected override SudokuGrid InitialSolution()
         {
-            int[] solution;
+            SudokuGrid solution = null;
 
             if (generatedSolutions == 0)
             {
-                solution = SudokuUtils.GreedySolution(Instance);
+                Console.WriteLine("error");
             }
             else
             {
