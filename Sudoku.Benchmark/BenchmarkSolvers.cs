@@ -115,10 +115,6 @@ namespace Sudoku.Benchmark
 
     }
 
-
-
-
-
     [Orderer(SummaryOrderPolicy.FastestToSlowest)]
     [MinColumn, MaxColumn, MeanColumn, MedianColumn]
     public abstract class BenchmarkSolversBase

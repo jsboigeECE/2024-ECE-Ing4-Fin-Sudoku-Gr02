@@ -12,10 +12,15 @@
     <PackageReference Include="BenchmarkDotNet" Version="0.13.5" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Sudoku.Backtracking2\Sudoku.Backtracking2.csproj" />
     <ProjectReference Include="..\Sudoku.PSO\Sudoku.PSO.csproj" />
     <ProjectReference Include="..\Sudoku.Shared\Sudoku.Shared.csproj" />
     <ProjectReference Include="..\Sudoku.Backtracking\Sudoku.Backtracking.csproj" />
     <ProjectReference Include="..\Sudoku.Shared\Sudoku.Shared.csproj" />
     <ProjectReference Include="..\Sudoku.SimulatedAnnealing\Sudoku.SimulatedAnnealing.csproj" />
+    <ProjectReference Include="..\Sudoku.CSPChoco\Sudoku.CSPChoco.csproj" />
+    <ProjectReference Include="..\Sudoku.SimulatedProbalist\Sudoku.SimulatedProbalist.csproj" />
+    <ProjectReference Include="..\Sudoku.ColorationGraph\Sudoku.ColorationGraph.csproj" />
+    <ProjectReference Include="..\Sudoku.SolverHuman\Sudoku.SolverHuman.csproj" />
   </ItemGroup>
 </Project>
