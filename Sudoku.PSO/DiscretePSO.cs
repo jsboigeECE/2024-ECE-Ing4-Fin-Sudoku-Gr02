@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Sudoku.Shared;
 
 namespace Sudoku.PSO
 {
@@ -35,7 +36,7 @@ namespace Sudoku.PSO
         protected abstract double Fitness(int[] individual);
 		
 		// Generate the initial solution.
-		protected abstract int[] InitialSolution();
+		protected abstract SudokuGrid? InitialSolution();
 
         // Velocity "plus" Velocity -> Velocity
         protected virtual List<Tuple<int,int>> PlusVelocity(List<Tuple<int,int>> vel1, List<Tuple<int,int>> vel2)

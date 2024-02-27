@@ -4,6 +4,8 @@
 
 Ce projet vise à créer un solveur de Sudoku qui imite l'approche humaine pour résoudre des puzzles. Le cœur de ce projet réside dans l'utilisation de techniques avancées de résolution de Sudoku, encapsulées dans une bibliothèque de résolution préexistante, et l'adaptation de ces méthodes pour être utilisées avec notre propre modèle de données `SudokuGrid`.
 
+###1er Partie : Utilisation Méthodes huamines
+
 ## Fonctionnement
 
 Le solveur transforme une instance de `SudokuGrid` en un `Puzzle` compatible avec la bibliothèque de résolution Sudoku. Après la résolution, le puzzle est reconverti en `SudokuGrid`. Ce processus permet d'utiliser une bibliothèque puissante tout en maintenant une interface cohérente avec notre modèle de données.
@@ -17,9 +19,8 @@ Le solveur transforme une instance de `SudokuGrid` en un `Puzzle` compatible ave
 
 ## Problèmes Rencontrés
 
-- **Git et VSCode**: Nous avons eu des problèmes initiaux avec la synchronisation du code et la configuration de l'environnement de développement. Après un ajustement des processus et une réinitialisation des configurations, nous avons pu les résoudre.
-- **Niveau de protection**: Nous avons rencontré un problème avec le niveau de protection de la classe `Puzzle`. La résolution a nécessité de changer la visibilité du constructeur de `Puzzle` de `internal` à `public`, afin de permettre son instanciation dans notre projet.
-- ** Le code compile mais ne résourd pas le sudoku
+- ** Git et VSCode**: Nous avons eu des problèmes initiaux avec la synchronisation du code et la configuration de l'environnement de développement. Après un ajustement des processus et une réinitialisation des configurations, nous avons pu les résoudre.
+- ** Niveau de protection**: Nous avons rencontré un problème avec le niveau de protection de la classe `Puzzle`. La résolution a nécessité de changer la visibilité du constructeur de `Puzzle` de `internal` à `public`, afin de permettre son instanciation dans notre projet.
 
 ## Remarque
 
@@ -27,6 +28,29 @@ On a également amélioré le code en ajoutant une méthode qui permettant de re
 
 ## Performance
 
--** Facile : 0.18 ms
--** Medium : 8.5 ms
--** Hard : 5.5 ms
+-** Facile (tous niveaux) : 0.18 ms
+-** Medium (Niveau 1) : 8.5 ms
+-** Hard (Niveau): 5.5 ms
+
+Impossible de résourdre le Sudoku à partir du niveau 2 Medium (Utilisation BackTracking)
+
+
+### 2e Partie: Utilisation du BackTracking sur des sudokus plus complexes
+
+## Démarches
+
+- **Conversion en Tableau Bidimensionnel** : Nous convertissons le `Puzzle` en un tableau bidimensionnel pour faciliter l'implémentation du backtracking.
+- **Application du Backtracking** : Un algorithme de backtracking est utilisé pour remplir les cellules vides et résoudre le puzzle.
+- **Reconversion en `SudokuGrid`** : Le tableau bidimensionnel résolu est reconverti en `SudokuGrid`.
+
+## Problèmes Rencontrés
+
+- **Gestion des Dimensions** : La conversion entre les différentes représentations de la grille de Sudoku a présenté des défis, notamment en ce qui concerne la gestion des indices et des dimensions du tableau. Nous avons résolu cela en créant des méthodes de conversion claires et bien définies.
+
+## Performance
+
+- **Difficulté Élevée : Le temps de résolution peut varier considérablement en fonction de la complexité du puzzle. Les optimisations ont permis de réduire ce temps.
+
+## Résultat 
+
+- **Il est maintenant possible de résourdre tous les sudokus. Grace à une condition if, le sudoku sera tout d'abord résolu par les méthodes humains si possible, sinon on utilisera le BackTracking.
