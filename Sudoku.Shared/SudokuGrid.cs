@@ -376,5 +376,9 @@ namespace Sudoku.Shared
 
         public int NbEmptyCells() => Cells.SelectMany(r => r).Count(c => c == 0);
 
+        public int GetValue(int v1, int v2)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
