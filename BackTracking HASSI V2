@@ -2,7 +2,7 @@
 import random
 
 def generate_board():
-    # Generate a completed Sudoku board
+    # Génère une grille de Sudoku complète
     board = [[0]*9 for _ in range(9)]
     fill_values(board)
     return board
@@ -73,20 +73,20 @@ def find_empty(bo):
                 return (i, j)
     return None
 
-# Generate a new random Sudoku board
+# Génère une nouvelle grille de Sudoku aléatoire
 board = generate_board()
 
-# Print the Sudoku puzzle before resolution
-print("Sudoku Puzzle (Before Resolution):")
+# Affiche la grille de Sudoku avant la résolution
+print("Grille de Sudoku (Avant la Résolution):")
 print_board(board)
 
-# Print a separator
+# Affiche un séparateur
 print("\n" + "-"*30 + "\n")
 
-# Solve the Sudoku puzzle
+# Résout la grille de Sudoku
 if solve(board):
-    # Print the solved Sudoku puzzle
-    print("\nSudoku Puzzle (After Resolution):")
+    # Affiche la grille de Sudoku résolue
+    print("\nGrille de Sudoku (Après la Résolution):")
     print_board(board)
 else:
-    print("\nUnable to solve the Sudoku puzzle with the given initial configuration.")
+    print("\nImpossible de résoudre la grille de Sudoku avec la configuration initiale donnée.")
