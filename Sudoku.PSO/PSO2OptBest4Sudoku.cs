@@ -1,8 +1,9 @@
 ﻿using Sudoku.PSO;
 using System;
 using System.Collections.Generic;
+using Sudoku.Shared;
 
-namespace Sudoku.PSO
+/*namespace Sudoku.PSO
 {
     public class PSO2OptBest4Sudoku : IMetaheuristic, ITunableMetaheuristic
     {
@@ -13,7 +14,7 @@ namespace Sudoku.PSO
 
         public void Start(string fileInput, string fileOutput, int timeLimit)
         {
-            SudokuInstance instance = new SudokuInstance(fileInput);
+            SudokuGrid instance = new SudokuGrid(fileInput);
 
             // Setting the parameters of the PSO for this instance of the problem.
             int[] lowerBounds = new int[instance.NumberSudokuGrids];
@@ -72,5 +73,5 @@ namespace Sudoku.PSO
             neighConf = parameters[3];
         }
     }
-}
+}*/
 
