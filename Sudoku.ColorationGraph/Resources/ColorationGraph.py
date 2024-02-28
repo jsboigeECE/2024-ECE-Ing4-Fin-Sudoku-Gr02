@@ -1,59 +1,75 @@
-from timeit import default_timer
+        string code = System.IO.File.ReadAllText(scriptPath);
+        scope.Exec(code);
 
-#instance = ((0,0,0,0,9,4,0,3,0),
-#           (0,0,0,5,1,0,0,0,7),
-#           (0,8,9,0,0,0,0,4,0),
-#           (0,0,0,0,0,0,2,0,8),
-#           (0,6,0,2,0,1,0,5,0),
-#           (1,0,2,0,0,0,0,0,0),
-#           (0,7,0,0,0,0,5,2,0),
-#           (9,0,0,0,6,5,0,0,0),
-#           (0,4,0,9,7,0,0,0,0))
+        // Appelle la fonction Python et récupère la grille résolue
+        PyObject result = scope.Eval("solve_sudoku_python(sudoku_grid)");
 
-def findNextCellToFill(grid, i, j):
-        for x in range(i,9):
-                for y in range(j,9):
-                        if grid[x][y] == 0:
-                                return x,y
-        for x in range(0,9):
-                for y in range(0,9):
-                        if grid[x][y] == 0:
-                                return x,y
-        return -1,-1
+        // Convertit le résultat Python en tableau C#
+        var managedResult = result.As<int[][]>();
+        return new Shared.SudokuGrid() { Cells = managedResult};
+        }
+    }
+}
 
-def isValid(grid, i, j, e):
-        rowOk = all([e != grid[i][x] for x in range(9)])
-        if rowOk:
-                columnOk = all([e != grid[x][j] for x in range(9)])
-                if columnOk:
-                        # finding the top left x,y co-ordinates of the section containing the i,j cell
-                        secTopX, secTopY = 3 *(i//3), 3 *(j//3) #floored quotient should be used here. 
-                        for x in range(secTopX, secTopX+3):
-                                for y in range(secTopY, secTopY+3):
-                                        if grid[x][y] == e:
-                                                return False
-                        return True
-        return False
 
-def solveSudoku(grid, i=0, j=0):
-        i,j = findNextCellToFill(grid, i, j)
-        if i == -1:
+FICHIER PYTHON : 
+
+import networkx as nx
+import numpy as np
+
+def create_sudoku_graph():
+    G = nx.Graph()
+    for i in range(9):
+        for j in range(9):
+            G.add_node((i, j))
+    for i in range(9):
+        for j in range(9):
+            for k in range(9):
+                if k != j:
+                    G.add_edge((i, j), (i, k))
+                if k != i:
+                    G.add_edge((i, j), (k, j))
+            for k in range(i//3 * 3, i//3 * 3 + 3):
+                for l in range(j//3 * 3, j//3 * 3 + 3):
+                    if (k, l) != (i, j):
+                        G.add_edge((i, j), (k, l))
+    return G
+
+def is_valid_placement(graph, position, color):
+    row, col = position
+    for i in range(9):
+        if 'color' in graph.nodes[(row, i)] and graph.nodes[(row, i)]['color'] == color:
+            return False
+        if 'color' in graph.nodes[(i, col)] and graph.nodes[(i, col)]['color'] == color:
+            return False
+    startRow, startCol = 3 * (row // 3), 3 * (col // 3)
+    for i in range(3):
+        for j in range(3):
+            if 'color' in graph.nodes[(startRow + i, startCol + j)] and graph.nodes[(startRow + i, startCol + j)]['color'] == color:
+                return False
+    return True
+
+def solve_sudoku_with_backtracking(graph, position=0):
+    if position == 81:
+        return True
+    row, col = divmod(position, 9)
+    if 'color' in graph.nodes[(row, col)]:
+        return solve_sudoku_with_backtracking(graph, position + 1)
+    for color in range(1, 10):
+        if is_valid_placement(graph, (row, col), color):
+            graph.nodes[(row, col)]['color'] = color
+            if solve_sudoku_with_backtracking(graph, position + 1):
                 return True
-        for e in range(1,10):
-                if isValid(grid,i,j,e):
-                        grid[i][j] = e
-                        if solveSudoku(grid, i, j):
-                                return True
-                        # Undo the current cell for backtracking
-                        grid[i][j] = 0
-        return False
+            del graph.nodes[(row, col)]['color']
+    return False
 
-#start = default_timer()
-if(solveSudoku(instance)):
-	#print_grid(instance)
-	r=instance
-else:
-	print ("Aucune solution trouv�e")
-
-#execution = default_timer() - start
-#print("Le temps de r�solution est de : ", execution, " seconds as a floating point value")
+def solve_sudoku_python(sudoku_grid):
+    graph = create_sudoku_graph()
+    for i in range(9):
+        for j in range(9):
+            if sudoku_grid[i][j] != 0:
+                graph.nodes[(i, j)]['color'] = sudoku_grid[i][j]
+    if solve_sudoku_with_backtracking(graph):
+        return [[graph.nodes[(i, j)]['color'] for j in range(9)] for i in range(9)]
+    else:
+        raise ValueError("No solution found for the given Sudoku puzzle.")
