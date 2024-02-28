@@ -45,7 +45,8 @@ Impossible de résourdre le Sudoku à partir du niveau 2 Medium (Utilisation Bac
 
 ## Problèmes Rencontrés
 
-- **Gestion des Dimensions** : La conversion entre les différentes représentations de la grille de Sudoku a présenté des défis, notamment en ce qui concerne la gestion des indices et des dimensions du tableau. Nous avons résolu cela en créant des méthodes de conversion claires et bien définies.
+- ** Gestion des Dimensions** : La conversion entre les différentes représentations de la grille de Sudoku a présenté des défis, notamment en ce qui concerne la gestion des indices et des dimensions du tableau. Nous avons résolu cela en créant des méthodes de conversion claires et bien définies.
+- ** Probléme de type avec le board. 
 
 ## Performance
 
@@ -54,3 +55,7 @@ Impossible de résourdre le Sudoku à partir du niveau 2 Medium (Utilisation Bac
 ## Résultat 
 
 - **Il est maintenant possible de résourdre tous les sudokus. Grace à une condition if, le sudoku sera tout d'abord résolu par les méthodes humains si possible, sinon on utilisera le BackTracking.
+
+## Amélioration 
+
+On a modifié notre BackTracking en implémentant les heuristiques MRV et LCV ce qui améliorent la performance de notre code. On passe de 180 ms à environ 165 ms en Medium 2 et une petit différence d'une dizaine de milli secondes en Hard 10.
